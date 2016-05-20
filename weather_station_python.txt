@@ -1,0 +1,48 @@
+https://developer.forecast.io/
+
+My API key is:
+f0fb0bec585c59865c84b7d93ee71a23
+
+Website is:
+https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE
+
+Ravenhurst is 53.5N, -2.25E
+
+Giving (for Ravenhurst):
+https://api.forecast.io/forecast/f0fb0bec585c59865c84b7d93ee71a23/53.5,-2.25
+
+
+
+
+To do:
+python:
+pip install forecastiopy
+
+>>> Ravenhurst = [53.5, -2.25]
+
+
+Get the current temperature and precipitation probability:
+
+>>> from forecastiopy import *
+>>> fio = ForecastIO.ForecastIO(f0fb0bec585c59865c84b7d93ee71a23, latitude=Ravenhurst[0], longitude=Ravenhurst[1])
+>>> current = FIOCurrently.FIOCurrently(fio)
+>>> print 'Temperature:', current.temperature
+Temperature: xx.xx (11.07)
+>>> print 'Precipitation Probability:', current.precipProbability
+Precipitation Probability: xx.xx (0.29)
+
+
+---------------
+A note on time The API returns time in unix time. Although this is a good computer format, it is not particulary human-readable So, to get a more human-sane format, you can do soething like this:
+
+For example, UNIX returns 1463777870:
+
+import datetime
+print(
+    datetime.datetime.fromtimestamp(
+        int("1463777870")
+    ).strftime('%Y-%m-%d %H:%M:%S')
+)
+
+
+-----------------------------
